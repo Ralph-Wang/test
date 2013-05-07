@@ -1,5 +1,11 @@
 ﻿#coding=utf-8
-def GenerateXml(CEdict, fname):
+def createNodeWithText(dom, tag, txt="test"):
+    Tag = dom.createElement(tag)
+    Txt = dom.createTextNode(txt)
+    Tag.appendChild(Txt)
+    return Tag
+
+def GenerateXml(CEdict, fname='test.xml'):
     import xml.dom.minidom
     impl = xml.dom.minidom.getDOMImplementation()
     dom = impl.createDocument(None, 'All', None)
@@ -11,9 +17,7 @@ def GenerateXml(CEdict, fname):
 #print(len(Dict))
         string = dom.createElement('string')
         root.appendChild(string)
-        chineseE=dom.createElement('chinese')
-        chineseT=dom.createTextNode(i)
-        chineseE.appendChild(chineseT)
+        chineseE = createNodeWithText(dom, 'chinese', i)
         string.appendChild(chineseE)
 
         englishE=dom.createElement('english')
