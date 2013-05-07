@@ -1,18 +1,14 @@
 ﻿#coding=utf-8
 def sort_file(fname):
-        import gen
-        import read
-        import os
-        Dict = read.readXml(fname)
-        gen.GenerateXml(Dict, fname)
-        print("Done..." % fname)
-        #os.system("pause")
+    import gen
+    import read
+    Dict = read.readXml(fname)
+    gen.GenerateXml(Dict, fname)
+    print("%s Done..." % fname)
 
 def GetFileList(wd):
     import os
-#    print(wd)
     os.chdir(wd)
-#    print(os.getcwd())
     Dir = os.listdir()
     new_Dir = []
     for i in Dir:
@@ -39,10 +35,10 @@ def controller():
         for i in Dir:
             print("%s being sorted" % i)
             sort_file(i)
+            print(zbd)
+
 if __name__ == '__main__':
     import os
     #test()
-    try:
-        fileCounts = controller()
-    finally:
-        os.system('pause')
+    fileCounts = controller()
+    os.system('pause')

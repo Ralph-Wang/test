@@ -4,16 +4,9 @@ def readXml(fname):
     doc = minidom.parse(fname)
     root = doc.documentElement
     strings = root.getElementsByTagName("string")
-    #print(strings)
     for string in strings:
-   #     print("-------------------------------------------")
         chineseNode = string.getElementsByTagName("chinese")[0]
-    #print (nameNode.childNodes)
-   #     print (chineseNode.nodeName + ":" + chineseNode.childNodes[0].nodeValue)
         englishNode = string.getElementsByTagName("english")[0]
-    #print (ageNode.childNodes)
-   #     print (englishNode.nodeName + ":" + englishNode.childNodes[0].nodeValue)
-        #print(chineseNode.childNodes,englishNode.childNodes)
         try:
             CValue = chineseNode.childNodes[0].nodeValue
         except IndexError:
@@ -22,7 +15,6 @@ def readXml(fname):
             EValue = englishNode.childNodes[0].nodeValue
         except  IndexError:
             EValue = ''
-
         CEdict[CValue] = EValue
     return CEdict
 
@@ -36,5 +28,3 @@ def test():
 
 if __name__ == '__main__':
     test()
-# Nothing. Just Test for git changes
-# Hail to GitHub
