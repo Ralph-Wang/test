@@ -1,11 +1,6 @@
 ﻿#coding=utf-8
-def createSameTagWithText(dom, tag="TAG"):
-    def _wraper(txt=""):
-        Tag = dom.createElement(tag)
-        Txt = dom.createTextNode(txt)
-        Tag.appendChild(Txt)
-        return Tag
-    return _wraper
+from lib import create
+createSameTagWithText = create.createSameTagWithText
 
 def GenerateXml(CEdict, fname='test.xml'):
     import xml.dom.minidom
