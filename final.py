@@ -1,7 +1,7 @@
 ﻿#coding=utf-8
 def sort_file(fname):
-    import gen
-    import read
+    from lib import gen
+    from lib import read
     Dict = read.readXml(fname)
     gen.GenerateXml(Dict, fname)
     print("%s Done..." % fname)
