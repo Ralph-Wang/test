@@ -1,20 +1,14 @@
 def readXml(fname):
     CEdict = {}
-    from xml.dom import minidom
-    doc = minidom.parse(fname)
-    root = doc.documentElement
-    strings = root.getElementsByTagName("string")
+    from xml.etree import ElementTree as ET
+    doc = ET.parse(fname)
+    root = doc.getroot()
+    strings = root.iter("string")
     for string in strings:
-        chineseNode = string.getElementsByTagName("chinese")[0]
-        englishNode = string.getElementsByTagName("english")[0]
-        try:
-            CValue = chineseNode.childNodes[0].nodeValue
-        except IndexError:
-            CValue = ''
-        try:
-            EValue = englishNode.childNodes[0].nodeValue
-        except  IndexError:
-            EValue = ''
+        chineseNode = string.find("chinese")
+        englishNode = string.find("english")
+        CValue = chineseNode.text
+        EValue = englishNode.text
         CEdict[CValue] = EValue
     return CEdict
 
