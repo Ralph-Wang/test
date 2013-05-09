@@ -1,14 +1,13 @@
 ﻿#coding=utf-8
-from lib import create
-createSameTagWithText = create.createSameTagWithText
+from lib import Create
 
 def GenerateXml(CEdict, fname='test.xml'):
     from xml.dom import minidom as dom
     from xml.etree import ElementTree as ET
     root = ET.Element('All')
     keys = sorted(list(CEdict.keys()), key=lambda t:len(t), reverse=1)
-    chineseMod = createSameTagWithText("chinese")
-    englishMod = createSameTagWithText("english")
+    chineseMod = Create.createSameTagWithText("chinese")
+    englishMod = Create.createSameTagWithText("english")
     for i in keys:
         string = ET.Element('string')
         root.append(string)
@@ -20,7 +19,7 @@ def GenerateXml(CEdict, fname='test.xml'):
 
 
     f= open('new/%s' % (fname), 'w', encoding='utf-8')
-    create.writePrettyXML(root, f)
+    Create.writePrettyXML(root, f)
     f.close()
 
 def test():
