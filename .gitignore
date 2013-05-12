@@ -1,0 +1,8 @@
+#ignore the compiled files
+*.pyc
+
+#ignore the complied-cache directories
+__*__
+
+#ignore the new directori
+new

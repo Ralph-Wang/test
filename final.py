@@ -1,7 +1,7 @@
 ﻿#coding=utf-8
 def sort_file(fname):
-    from lib import gen
-    from lib import read
+    import gen
+    import read
     Dict = read.readXml(fname)
     gen.GenerateXml(Dict, fname)
     print("%s Done..." % fname)
@@ -35,7 +35,7 @@ def controller():
         for i in Dir:
             print("%s being sorted" % i)
             sort_file(i)
-            print(zbd)
+#            print(zbd)
 
 if __name__ == '__main__':
     import os
