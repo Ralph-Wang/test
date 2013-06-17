@@ -1,21 +1,7 @@
-test
-====================
-just a Repo for me to learn about Coding knowledges
+### sort the .xml files    
 
-These are *Emphsized Words*
+coded by python 3.3    
 
-These are **More Emphsized Words**
-
-These are quotes ``print('Hello World')``
-
-These can show what you write indeed \*\*hahahah\*\* from the first \
-
-* point 1
-
-> tree list 1
-> > tree list 2
-> 
-> > > tree list 3
-
-Another Title
-================
+1. move PYs to paths where XMLs in
+2. run final.py to sort XMLs.
+3. get your result in the *new* directory
