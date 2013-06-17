@@ -23,7 +23,7 @@ def GenerateXml(CEdict, fname='test.xml'):
     f.close()
 
 def test():
-    GenerateXml({"测试":"test","测试2":"test2","说啊":""})
+    GenerateXml({"测试":"test","测试2":"test2","说啊":""},'test.xml')
 
 if __name__ == '__main__':
     test()
