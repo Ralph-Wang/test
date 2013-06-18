@@ -119,17 +119,18 @@ function Bug_Auto()
         }
         //当按键是退格键时
         else if (event.keyCode == 8) {
-            console.log("press BackSpace");
+            //console.log("press BackSpace");
             for (i in conName){
-                var res;
+                var res,tmp;
                 res = false;
-                if (conName[i].indexOf(t[l-1]) >= 0){
+                tmp = conName[i].trim();
+                if (tmp.indexOf(t[l-1]) >= 0){
                     res = true;
                     break;
                 }
             }
-            console.log(res);
-            if (res t[l-1].indexOf("\n") < 0){
+            //console.log(res);
+            if (res){
                 this.value = v.replace("\n" + t[l-1], "");
             }
 
