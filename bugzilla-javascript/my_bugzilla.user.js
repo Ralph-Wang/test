@@ -81,13 +81,13 @@ function Bug_Auto()
 {
     x = document.getElementById('comment');
     x.onkeyup=function onkeyup(){
+        v = this.value;
+        t = v.split(conSep);
+        l = t.length;
         // 当按下的是回车键时
         if(event.keyCode == 13)
         {
-            v = this.value;
             //按内容分隔出块
-            t = v.split(conSep);
-            l = t.length;
             //最后一块为空时,添加下一个内容标题
             if (t[l-1] == ""){
                 for (i=0;i<conLen;i++){
@@ -116,6 +116,23 @@ function Bug_Auto()
                 }
                 return false;
             }
+        }
+        //当按键是退格键时
+        else if (event.keyCode == 8) {
+            console.log("press BackSpace");
+            for (i in conName){
+                var res;
+                res = false;
+                if (conName[i].indexOf(t[l-1]) >= 0){
+                    res = true;
+                    break;
+                }
+            }
+            console.log(res);
+            if (res t[l-1].indexOf("\n") < 0){
+                this.value = v.replace("\n" + t[l-1], "");
+            }
+
         }
     }
 }
