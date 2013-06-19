@@ -130,7 +130,7 @@ function Bug_Auto()
                 }
             }
             //console.log(res);
-            if (res){
+            if (res && t[l-1] != ""){
                 this.value = v.replace("\n" + t[l-1], "");
             }
 
