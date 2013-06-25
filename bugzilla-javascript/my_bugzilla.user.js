@@ -17,7 +17,7 @@ var url = window.location.href;
 if (url.indexOf("enter_bug.cgi?product") >= 0){
     New_Bug();
 }
-else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") >= 0 || url.indexOf("attachment.cgi") ){
+else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") >= 0 || url.indexOf("attachment.cgi") >=0 ){
     Old_Bug();
 }else if (url.indexOf("attachment.cgi") >= 0){
     Auto_Pic_Desc();
