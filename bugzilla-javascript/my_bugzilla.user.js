@@ -6,8 +6,10 @@ var seqSep = ">";
 var conSep = "\n\n";
 //各部分名称
 var conName = new Array("步骤:\n","期望:\n","实际:\n","补充说明:\n");
-var conLen = conName.length
-conName = conName.reverse()
+var conLen = conName.length;
+conName = conName.reverse();
+//产品和版本
+var curProduct =new Array ("星合企业知识产权管理平台","2.0.0.0")
 
 
 
@@ -30,6 +32,16 @@ function New_Bug(){
     Bug_Module("");
     Bug_Auto();
     Auto_Pic_Desc();
+    if (url.indexOf(encodeURI(curProduct[0])) >=0){
+        Default_Version();
+    }
+}
+
+function Default_Version(){
+    console.log("in Default_Version");
+    v = document.getElementsByName('version')[0];
+    dVi = getCurVersionIndex(v, curProduct[1]);
+    v.selectedIndex = dVi;
 }
 function New_Auto_Prefix(){
     x = document.getElementsByName('component')[0];
@@ -98,7 +110,7 @@ function Bug_Auto()
                         return false;
                     }
                 }
-            //若不是空,处理内容内部.
+                //若不是空,处理内容内部.
             }else{
                 t = v.split("\n");
                 last = t[t.length-2];
@@ -135,5 +147,15 @@ function Bug_Auto()
             }
 
         }
+    }
+}
+
+function getCurVersionIndex(select, expvalue){
+    var i = 0;
+    for (x in select.options){
+        if (select.options[x].value == expvalue){
+            return i;
+        }
+        i += 1;
     }
 }
