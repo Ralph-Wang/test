@@ -147,16 +147,7 @@ function Bug_Auto()
                 return;
             }
             if (!res){
-                tmp = v.split("\n");
-                tmp = tmp[tmp.length-1];
-                try {
-                    res = (eval(tmp) == parseInt(tmp));
-                }catch (err){
-                    return;
-                }
-            }
-            if (res){
-                this.value = v.replace("\n" + tmp, "");
+                deleteSerialNum(v, seqSep);
             }
             //console.log(res);
         }
@@ -170,5 +161,18 @@ function getCurVersionIndex(select, expvalue){
             return i;
         }
         i += 1;
+    }
+}
+
+function deleteSerialNum(text, seperator){
+    tmp = text.split("\n");
+    tmp = tmp[tmp.length-1];
+    try {
+        res = (eval(tmp) == parseInt(tmp));
+    }catch (err){
+        res = false;
+    }
+    if (res){
+        this.value = v.replace("\n" + tmp, "");
     }
 }
