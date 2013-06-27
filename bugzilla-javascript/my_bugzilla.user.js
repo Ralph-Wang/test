@@ -21,8 +21,6 @@ if (url.indexOf("enter_bug.cgi?product") >= 0){
 }
 else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") >= 0 || url.indexOf("attachment.cgi") >=0 ){
     Old_Bug();
-}else if (url.indexOf("attachment.cgi") >= 0){
-    Auto_Pic_Desc();
 }
 
 /*****************************************************/
@@ -64,6 +62,7 @@ function Bug_Module(module)
 }
 function Auto_Pic_Desc()
 {
+    console.log("in Auto_Pic_Desc");
     x = document.getElementById('data');
     x.onchange = function onchange(ev)
     {
@@ -76,6 +75,7 @@ function Auto_Pic_Desc()
 function Old_Bug()
 {
     Old_Auto_Prefix();
+    Auto_Pic_Desc();
 }
 
 function Old_Auto_Prefix()
