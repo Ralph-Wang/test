@@ -131,21 +131,34 @@ function Bug_Auto()
         }
         //当按键是退格键时
         else if (event.keyCode == 8) {
+            var res,tmp;
+            res = false;
             //console.log("press BackSpace");
             for (i in conName){
-                var res,tmp;
-                res = false;
                 tmp = conName[i].trim();
                 if (tmp.indexOf(t[l-1]) >= 0){
                     res = true;
                     break;
                 }
             }
-            //console.log(res);
+
             if (res && t[l-1] != ""){
                 this.value = v.replace("\n" + t[l-1], "");
+                return;
             }
-
+            if (!res){
+                tmp = v.split("\n");
+                tmp = tmp[tmp.length-1];
+                try {
+                    res = (eval(tmp) == parseInt(tmp));
+                }catch (err){
+                    return;
+                }
+            }
+            if (res){
+                this.value = v.replace("\n" + tmp, "");
+            }
+            //console.log(res);
         }
     }
 }
