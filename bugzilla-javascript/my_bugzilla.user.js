@@ -96,11 +96,12 @@ function Bug_Auto()
         v = this.value;
         t = v.split(conSep);
         l = t.length;
+        lines = v.split('\n');
         // 当按下的是回车键时
         if(event.keyCode == 13)
         {
             //按内容分隔出块
-            //最后一块为空时,添加下一个内容标题
+            //最后一行为空时,添加下一个内容标题
             if (t[l-1] == ""){
                 for (i=0;i<conLen;i++){
                     if (v.indexOf(conName[i]) >= 0){
@@ -112,8 +113,7 @@ function Bug_Auto()
                 }
                 //若不是空,处理内容内部.
             }else{
-                t = v.split("\n");
-                last = t[t.length-2];
+                last = lines[lines.length-2];
                 t1 = last.split(seqSep);
                 if (t1[t1.length-1] == "" && last != ""){
                     this.value = v.replace(last+"\n","");
@@ -131,7 +131,6 @@ function Bug_Auto()
         }
         //当按键是退格键时
         else if (event.keyCode == 8) {
-            var res,tmp;
             res = false;
             //console.log("press BackSpace");
             for (i in conName){
@@ -147,16 +146,15 @@ function Bug_Auto()
                 return;
             }
             if (!res){
-                tmp = v.split("\n");
-                tmp = tmp[tmp.length-1];
+                Num = lines[lines.length-1];
                 try {
-                    res = (eval(tmp) == parseInt(tmp));
+                    res = (eval(Num) == parseInt(Num));
                 }catch (err){
                     return;
                 }
             }
             if (res){
-                this.value = v.replace("\n" + tmp, "");
+                this.value = v.replace("\n" + Num, "");
             }
             //console.log(res);
         }
