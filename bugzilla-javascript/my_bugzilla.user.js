@@ -156,7 +156,7 @@ function Bug_Auto()
                 return;
             }
             if (!res){
-                deleteSerialNum(v, seqSep);
+                this.value = deleteSerialNum(v, seqSep);
             }
             //console.log(res);
         }
@@ -174,6 +174,7 @@ function getCurVersionIndex(select, expvalue){
 }
 
 function deleteSerialNum(text, seperator){
+    console.log("in deleteSerialNum");
     tmp = text.split("\n");
     tmp = tmp[tmp.length-1];
     try {
@@ -181,7 +182,9 @@ function deleteSerialNum(text, seperator){
     }catch (err){
         res = false;
     }
+    //    console.log(tmp);
     if (res){
-        this.value = v.replace("\n" + tmp, "");
+        text = text.replace("\n" + tmp, "");
     }
+    return text;
 }
