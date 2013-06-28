@@ -64,8 +64,7 @@ function Auto_Pic_Desc()
 {
     console.log("in Auto_Pic_Desc");
     x = document.getElementById('data');
-    x.onchange = function onchange(ev)
-    {
+    x.onchange = function onchange(){
         y = document.getElementById('description');
         tmp = this.value.split('\\');
         c = tmp.length;
@@ -84,7 +83,18 @@ function Old_Auto_Prefix()
     status_select.onchange=function onchange()
     {
         comment_textarea = document.getElementById('comment');
-        comment_textarea.value = this.value + '.\n' + comment_textarea.value;
+        if ( this.value == "REOPENED" ){
+            tmp = confirm("REOPEN(确定) 还是 补充(取消) ?","REOPEN","补充");
+            if (tmp) {
+                res = "REOPENED.";
+            }else{
+                res= "补充:";
+            }
+            comment_textarea.value = res + '\n' + comment_textarea.value;
+        }else{
+            comment_textarea = document.getElementById('comment');
+            comment_textarea.value = this.value + '.\n' + comment_textarea.value;
+        }
     }
 }
 
