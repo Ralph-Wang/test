@@ -96,6 +96,31 @@ function Old_Auto_Prefix()
             comment_textarea.value = this.value + '.\n' + comment_textarea.value;
         }
     }
+
+    comment = document.getElementById('comment');
+    comment.onkeyup = function onkeyup(){
+        x = document.getElementById('bug_status');
+        v = this.value;
+        lines = v.split('\n');
+        lcount = lines.length;
+        if (event.keyCode == 8){
+            last = lines[lcount - 1];
+            last = last.replace("\n","");
+            console.log(last);
+            token = false;
+            if ( last.indexOf("补充") >= 0 ){
+                token = true;
+            }
+            for (i in x.options) {
+                if ( last.indexOf(x[i].value) >= 0 ){
+                    token = true;
+                }
+            }
+            if (token){
+                this.value = v.replace(last, "");
+            }
+        }
+    }
 }
 
 ///////
@@ -187,4 +212,8 @@ function deleteSerialNum(text, seperator){
         text = text.replace("\n" + tmp, "");
     }
     return text;
+}
+
+function deletePrefix(text, seperator){
+    console.log("in deletePrefix");
 }
