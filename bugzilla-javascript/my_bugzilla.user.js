@@ -22,6 +22,9 @@ if (url.indexOf("enter_bug.cgi?product") >= 0){
 else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") >= 0 || url.indexOf("attachment.cgi") >=0 ){
     Old_Bug();
 }
+else if (url.indexOf("buglist.cgi") >= 0){
+    TopSearches()
+}
 
 /*****************************************************/
 //functions
@@ -216,4 +219,11 @@ function deleteSerialNum(text, seperator){
 
 function deletePrefix(text, seperator){
     console.log("in deletePrefix");
+}
+
+function TopSearches(){
+    x = document.getElementById('links-saved');
+    x1 = x.cloneNode(x);
+    y = document.getElementsByClassName('links')[0];
+    y.appendChild(x1);
 }
