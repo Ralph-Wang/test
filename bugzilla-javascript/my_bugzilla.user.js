@@ -221,7 +221,7 @@ function deletePrefix(text, seperator){
 
 function TopSearches(){
     x = document.getElementById('links-saved');
-    x1 = x.cloneNode(x);
+    x1 = x.cloneNode(true);
     y = document.getElementsByClassName('links')[0];
     y.appendChild(x1);
 }
