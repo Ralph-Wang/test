@@ -29,13 +29,14 @@ else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") 
 function New_Bug(){
     //New_Auto_Prefix();
     x = document.getElementById('expert_fields_controller');
-    if (x.innerText.indexOf('显示') >= 0 )
+    if (x != null && x.innerText.indexOf('显示') >= 0 )
     {
         x.click()
     }
     Bug_Module("");
     Bug_Auto();
     Auto_Pic_Desc();
+    console.log(encodeURI(curProduct[0]));
     if (url.indexOf(encodeURI(curProduct[0])) >=0){
         Default_Version();
     }
