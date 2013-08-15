@@ -148,7 +148,7 @@ function Bug_Auto()
                 for (i=0;i<conLen;i++){
                     if (v.indexOf(conName[i]) >= 0){
                         if (i != 0){
-                            this.value = v + conName[i-1];
+                            this.value = v + conName[i-1] + "1" + seqSep;
                         }
                         return false;
                     }
@@ -208,15 +208,19 @@ function getCurVersionIndex(select, expvalue){
 function deleteSerialNum(text, seperator){
     console.log("in deleteSerialNum");
     tmp = text.split("\n");
-    tmp = tmp[tmp.length-1];
+    lasttmp = tmp[tmp.length-1];
+    console.log(lasttmp)
     try {
-        res = (eval(tmp) == parseInt(tmp));
+        res = (eval(lasttmp) == parseInt(lasttmp));
     }catch (err){
         res = false;
     }
     //    console.log(tmp);
     if (res){
-        text = text.replace("\n" + tmp, "");
+        textRe = strReverse(text);
+        console.log(textRe)
+        textRe = textRe.replace(strReverse(lasttmp) + "\n", "");
+        text = strReverse(textRe);
     }
     return text;
 }
@@ -230,4 +234,12 @@ function TopSearches(){
     x1 = x.cloneNode(true);
     y = document.getElementsByClassName('links')[0];
     y.appendChild(x1);
+}
+
+function strReverse(str){
+    resStr = '';
+    for (i in str){
+        resStr += str[str.length-1-i];
+    }
+    return resStr;
 }
