@@ -5,7 +5,7 @@ var seqSep = ">";
 //各部分内容分隔
 var conSep = "\n\n";
 //各部分名称
-var conName = new Array("步骤:\n","期望:\n","实际:\n","补充说明:\n");
+var conName = new Array("步骤:\n1" + seqSep,"期望:\n2>" + seqSep,"实际:\n" + seqSep,"补充说明:\n" + seqSep);
 var conLen = conName.length;
 conName = conName.reverse();
 //产品和版本
@@ -27,51 +27,44 @@ else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") 
 /*****************************************************/
 //functions
 function New_Bug(){
-    //New_Auto_Prefix();
+    console.log("a New Bug");
     x = document.getElementById('expert_fields_controller');
     if (x != null && x.innerText.indexOf('显示') >= 0 )
     {
         x.click()
     }
+    if (url.indexOf(encodeURI(curProduct[0])) >=0){
+        Default_Version();
+    }
     Bug_Module("");
     Bug_Auto();
     Auto_Pic_Desc();
     console.log(encodeURI(curProduct[0]));
-    if (url.indexOf(encodeURI(curProduct[0])) >=0){
-        Default_Version();
-    }
 }
 
 function Default_Version(){
-    console.log("in Default_Version");
+    console.log("Select Default_Version");
     v = document.getElementsByName('version')[0];
     dVi = getCurVersionIndex(v, curProduct[1]);
     v.selectedIndex = dVi;
 }
-function New_Auto_Prefix(){
-    x = document.getElementsByName('component')[0];
-    x.onchange=function onchange(event){
-        y = document.getElementsByName('short_desc')[0];
-        //alert(x.value);
-        set_assign_to();
-        y.value = this.value + ",";
-    }
-}
+
 function Bug_Module(module)
 {
-    var Demo = conName[conLen-1] + "1" + seqSep;
+    var Demo = conName[conLen-1];
     // + "\n" + module + "\n2.\n3.\n\n期望:\n\n\n实际:\n\n\n\其它:\n";
     x = document.getElementById('comment');
     if (x.value == "")
     {
+        console.log("Add Prefix");
         x.value=Demo;
     }
 }
 function Auto_Pic_Desc()
 {
-    console.log("in Auto_Pic_Desc");
     x = document.getElementById('data');
     x.onchange = function onchange(){
+        console.log("Add Pic Description");
         y = document.getElementById('description');
         tmp = this.value.split('\\');
         c = tmp.length;
@@ -80,6 +73,7 @@ function Auto_Pic_Desc()
 }
 function Old_Bug()
 {
+    console.log("an Old Bug");
     Old_Auto_Prefix();
     Auto_Pic_Desc();
 }
@@ -89,6 +83,7 @@ function Old_Auto_Prefix()
     status_select = document.getElementById('bug_status');
     status_select.onchange=function onchange()
     {
+        console.log("Add old Bug Prefix");
         comment_textarea = document.getElementById('comment');
         if ( this.value == "REOPENED" ){
             tmp = confirm("REOPEN(确定) 还是 补充(取消) ?","REOPEN","补充");
@@ -106,6 +101,7 @@ function Old_Auto_Prefix()
 
     comment = document.getElementById('comment');
     comment.onkeyup = function onkeyup(){
+        console.log("Delete Invalid Prefix");
         x = document.getElementById('bug_status');
         v = this.value;
         lines = v.split('\n');
@@ -148,7 +144,8 @@ function Bug_Auto()
                 for (i=0;i<conLen;i++){
                     if (v.indexOf(conName[i]) >= 0){
                         if (i != 0){
-                            this.value = v + conName[i-1] + "1" + seqSep;
+                            console.log("Add" + conName[i-1].split('\n')[0]);
+                            this.value = v + conName[i-1];
                         }
                         return false;
                     }
@@ -166,6 +163,7 @@ function Bug_Auto()
                     }else{
                         next = next + seqSep;
                     }
+                    console.log("Add Sequence")
                     this.value = v + next;
                 }
                 return false;
@@ -184,6 +182,7 @@ function Bug_Auto()
             }
 
             if (res && t[l-1] != ""){
+                console.log("Delete Prefix");
                 this.value = v.replace("\n" + t[l-1], "");
                 return;
             }
@@ -206,7 +205,7 @@ function getCurVersionIndex(select, expvalue){
 }
 
 function deleteSerialNum(text, seperator){
-    console.log("in deleteSerialNum");
+    console.log("Delete Sequence");
     tmp = text.split("\n");
     lasttmp = tmp[tmp.length-1];
     console.log(lasttmp)
