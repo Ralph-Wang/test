@@ -5,7 +5,7 @@ var seqSep = ">";
 //各部分内容分隔
 var conSep = "\n\n";
 //各部分名称
-var conName = new Array("步骤:\n1" + seqSep,"期望:\n2>" + seqSep,"实际:\n" + seqSep,"补充说明:\n" + seqSep);
+var conName = new Array("步骤:\n1","期望:\n1","实际:\n1","补充说明:\n1");
 var conLen = conName.length;
 conName = conName.reverse();
 //产品和版本
@@ -51,8 +51,7 @@ function Default_Version(){
 
 function Bug_Module(module)
 {
-    var Demo = conName[conLen-1];
-    // + "\n" + module + "\n2.\n3.\n\n期望:\n\n\n实际:\n\n\n\其它:\n";
+    var Demo = conName[conLen-1] + seqSep;
     x = document.getElementById('comment');
     if (x.value == "")
     {
@@ -145,7 +144,7 @@ function Bug_Auto()
                     if (v.indexOf(conName[i]) >= 0){
                         if (i != 0){
                             console.log("Add" + conName[i-1].split('\n')[0]);
-                            this.value = v + conName[i-1];
+                            this.value = v + conName[i-1] + seqSep;
                         }
                         return false;
                     }
@@ -211,6 +210,7 @@ function deleteSerialNum(text, seperator){
     console.log(lasttmp)
     try {
         res = (eval(lasttmp) == parseInt(lasttmp));
+        res = parseInt(lasttmp) != 1;
     }catch (err){
         res = false;
     }
