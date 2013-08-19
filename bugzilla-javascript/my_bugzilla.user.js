@@ -153,7 +153,7 @@ function Bug_Auto()
             }else{
                 last = lines[lines.length-2];
                 t1 = last.split(seqSep);
-                if (t1[t1.length-1] == "" && last != ""){
+                if (t1[t1.length-1] == "" && last != "" && parseInt(last) != 1){
                     this.value = v.replace(last+"\n","");
                 }else{
                     next = parseInt(last) + 1;
