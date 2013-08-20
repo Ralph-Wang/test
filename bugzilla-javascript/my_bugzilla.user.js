@@ -209,8 +209,8 @@ function deleteSerialNum(text, seperator){
     lasttmp = tmp[tmp.length-1];
     console.log(lasttmp)
     try {
-        res = (eval(lasttmp) == parseInt(lasttmp));
-        res = parseInt(lasttmp) != 1;
+        res = (eval(lasttmp) == parseInt(lasttmp)) && parseInt(lasttmp) != 1;
+        //console.log(res);
     }catch (err){
         res = false;
     }
