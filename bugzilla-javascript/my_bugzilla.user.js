@@ -91,10 +91,10 @@ function Old_Auto_Prefix()
             }else{
                 res= "补充:";
             }
-            comment_textarea.value = res + '\n' + comment_textarea.value;
+            comment_textarea.value = res + '\n>' + comment_textarea.value;
         }else{
             comment_textarea = document.getElementById('comment');
-            comment_textarea.value = this.value + '.\n' + comment_textarea.value;
+            comment_textarea.value = this.value + '.\n>' + comment_textarea.value;
         }
     }
 
