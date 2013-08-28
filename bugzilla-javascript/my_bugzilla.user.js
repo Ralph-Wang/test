@@ -221,7 +221,7 @@ function deleteSerialNum(text, seperator){
         textRe = textRe.replace(strReverse(lasttmp) + "\n", "");
         text = strReverse(textRe);
     }
-    return text;
+    return text.trim();
 }
 
 function deletePrefix(text, seperator){
