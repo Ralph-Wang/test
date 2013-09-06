@@ -162,8 +162,10 @@ function Bug_Auto()
                     }else{
                         next = next + seqSep;
                     }
-                    console.log("Add Sequence")
-                    this.value = v + next;
+                    console.log("Add Sequence");
+                    //this.value = v + next;
+                    tmpValue = strReverse(this.value);
+                    this.value = strReverse(tmpValue.replace('\n', strReverse('\n'+ next)));
                 }
                 return false;
             }
