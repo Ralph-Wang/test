@@ -16,12 +16,15 @@ var curProduct =new Array ("星合企业知识产权管理平台","2.0.0.0")
 //main 主功能控制区
 var url = window.location.href;
 
-TopSearches()
 if (url.indexOf("enter_bug.cgi?product") >= 0){
     New_Bug();
 }
 else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") >= 0 || url.indexOf("attachment.cgi") >=0 ){
     Old_Bug();
+}
+else if (url.indexOf("buglist.cgi") >= 0){
+    TopOperation();
+    TopSearches();
 }
 
 /*****************************************************/
@@ -29,9 +32,9 @@ else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") 
 function New_Bug(){
     console.log("a New Bug");
     x = document.getElementById('expert_fields_controller');
-    if (x != null && x.innerText.indexOf('显示') >= 0 )
+    if (x != null && x.innerHTML.indexOf('显示') >= 0 )
     {
-        x.click()
+        x.click();
     }
     if (url.indexOf(encodeURI(curProduct[0])) >=0){
         Default_Version();
@@ -91,10 +94,10 @@ function Old_Auto_Prefix()
             }else{
                 res= "补充:";
             }
-            comment_textarea.value = res + '\n>' + comment_textarea.value;
+            comment_textarea.value = res + '\n' + comment_textarea.value;
         }else{
             comment_textarea = document.getElementById('comment');
-            comment_textarea.value = this.value + '.\n>' + comment_textarea.value;
+            comment_textarea.value = this.value + '.\n' + comment_textarea.value;
         }
     }
 
@@ -231,9 +234,18 @@ function deletePrefix(text, seperator){
 }
 
 function TopSearches(){
+    console.log('copy My-Search upto the Top')
     x = document.getElementById('links-saved');
     x1 = x.cloneNode(true);
-    y = document.getElementsByClassName('links')[0];
+    y = document.getElementsByClassName('search_description')[0];
+    y.appendChild(x1);
+}
+
+function TopOperation(){
+    console.log('copy Operations-For-BugList upto the Top')
+    x = document.getElementsByTagName('table');
+    x1 = x[2].cloneNode(true);
+    y = document.getElementsByClassName('search_description')[0];
     y.appendChild(x1);
 }
 
