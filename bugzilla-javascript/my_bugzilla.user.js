@@ -244,7 +244,7 @@ function TopSearches(){
 function TopOperation(){
     console.log('copy Operations-For-BugList upto the Top')
     x = document.getElementsByTagName('table');
-    x1 = x[2].cloneNode(true);
+    x1 = x[x.length-1].cloneNode(true);
     y = document.getElementsByClassName('search_description')[0];
     y.appendChild(x1);
 }
