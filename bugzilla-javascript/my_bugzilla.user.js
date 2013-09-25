@@ -24,8 +24,8 @@ else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") 
 }
 else if (url.indexOf("buglist.cgi") >= 0){
     TopOperation();
-    TopSearches();
 }
+TopSearches();
 
 /*****************************************************/
 //functions
@@ -234,11 +234,15 @@ function deletePrefix(text, seperator){
 }
 
 function TopSearches(){
-    console.log('copy My-Search upto the Top')
-    x = document.getElementById('links-saved');
-    x1 = x.cloneNode(true);
-    y = document.getElementsByClassName('search_description')[0];
-    y.appendChild(x1);
+    console.log('copy My-Search upto the Top');
+    headDiv = document.getElementById('header');
+    headLinks = document.getElementsByClassName('links')[0];
+    headDiv.removeChild(headLinks);
+    bottomLinks = document.getElementById('useful-links');
+    bottomLinksCopy = bottomLinks.cloneNode(true);
+    bottomLinksCopy.className = 'links';
+    headDiv.appendChild(bottomLinksCopy);
+    headDiv.id = 'footer';
 }
 
 function TopOperation(){
