@@ -15,6 +15,7 @@ var curProduct =new Array ("星合企业知识产权管理平台","2.0.0.0")
 
 //main 主功能控制区
 var url = window.location.href;
+TopSearches();
 
 if (url.indexOf("enter_bug.cgi?product") >= 0){
     New_Bug();
@@ -25,7 +26,6 @@ else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") 
 else if (url.indexOf("buglist.cgi") >= 0){
     TopOperation();
 }
-TopSearches();
 
 /*****************************************************/
 //functions
