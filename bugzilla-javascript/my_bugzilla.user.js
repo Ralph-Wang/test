@@ -42,9 +42,33 @@ function New_Bug(){
     Bug_Module("");
     Bug_Auto();
     Auto_Pic_Desc();
+    commentIsEmpty();
     console.log(encodeURI(curProduct[0]));
 }
 
+function commentIsEmpty(){
+    console.log('in commentIsEmpty');
+    btnSubmit = document.getElementById('commit');
+    btnSubmit.onclick = function commentIsEmpty(event){
+        txtComment = document.getElementById('comment');
+        //去除模板内容
+        realComment = txtComment.value;
+        for (i in conName){
+            realComment = realComment.replace(conName[i],'');
+        }
+        realComment = realComment.replace(/>/g, '');
+        realComment = realComment.replace(/\d/g, '');
+        realComment = realComment.replace(/\n/g, '');
+        //console.log(realComment);
+        //判断真实内容是否为空
+        if (realComment == '')
+        {
+            alert('请填写描述');
+            return false;
+        }
+        return true;
+    }
+}
 function Default_Version(){
     console.log("Select Default_Version");
     v = document.getElementsByName('version')[0];
