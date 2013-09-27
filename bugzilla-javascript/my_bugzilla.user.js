@@ -42,11 +42,11 @@ function New_Bug(){
     Bug_Module("");
     Bug_Auto();
     Auto_Pic_Desc();
-    commentIsEmpty();
+    IsEmpty();
     console.log(encodeURI(curProduct[0]));
 }
 
-function commentIsEmpty(){
+function IsEmpty(){
     console.log('in commentIsEmpty');
     btnSubmit = document.getElementById('commit');
     btnSubmit.onclick = function commentIsEmpty(event){
@@ -64,6 +64,12 @@ function commentIsEmpty(){
         if (realComment == '')
         {
             alert('请填写描述');
+            return false;
+        }
+        // 子产品部分
+        selectComponent = document.getElementsByName('component')[0];
+        if (selectComponent.value == ''){
+            alert('请选择一个子产品');
             return false;
         }
         return true;
