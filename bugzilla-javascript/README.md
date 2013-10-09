@@ -1,6 +1,7 @@
 ### User.js for bugzilla    
 
 * copy **Saved Searches** & **Buglist-Operation** list upto the top
+* copy **Summary** downto the bottom
 * struct of bugs    
 * fill description for attachments as the file name.
 * prefix common for changing **STATUS** .

@@ -22,6 +22,7 @@ if (url.indexOf("enter_bug.cgi?product") >= 0){
 }
 else if (url.indexOf("show_bug.cgi?id=") >= 0 || url.indexOf("process_bug.cgi") >= 0 || url.indexOf("attachment.cgi") >=0 ){
     Old_Bug();
+	Bottom_Summary();
 }
 else if (url.indexOf("buglist.cgi") >= 0){
     TopOperation();
@@ -75,6 +76,7 @@ function IsEmpty(){
         return true;
     }
 }
+
 function Default_Version(){
     console.log("Select Default_Version");
     v = document.getElementsByName('version')[0];
@@ -95,6 +97,7 @@ function Bug_Module(module)
 function Auto_Pic_Desc()
 {
     x = document.getElementById('data');
+	if (x != null){
     x.onchange = function onchange(){
         console.log("Add Pic Description");
         y = document.getElementById('description');
@@ -102,6 +105,7 @@ function Auto_Pic_Desc()
         c = tmp.length;
         y.value = tmp[c-1].split('.')[0];
     }
+	}
 }
 function Old_Bug()
 {
@@ -276,11 +280,18 @@ function TopSearches(){
 }
 
 function TopOperation(){
-    console.log('copy Operations-For-BugList upto the Top')
+    console.log('copy Operations-For-BugList upto the Top');
     x = document.getElementsByTagName('table');
     x1 = x[x.length-1].cloneNode(true);
     y = document.getElementsByClassName('search_description')[0];
     y.appendChild(x1);
+}
+function Bottom_Summary(){
+	console.log('copy Summary downto the Bottom');
+	x = document.getElementsByClassName('bz_alias_short_desc_container edit_form')[0];
+	y = document.getElementsByName('changeform')[0];
+	z = x.cloneNode(true);
+	y.appendChild(z);
 }
 
 function strReverse(str){
