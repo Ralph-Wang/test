@@ -291,6 +291,8 @@ function Bottom_Summary(){
 	x = document.getElementsByClassName('bz_alias_short_desc_container edit_form')[0];
 	y = document.getElementsByName('changeform')[0];
 	z = x.cloneNode(true);
+	z1 = z.getElementsByTagName('small')[0];
+	z1.remove();
 	y.appendChild(z);
 }
 
