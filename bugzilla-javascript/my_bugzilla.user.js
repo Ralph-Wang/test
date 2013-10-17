@@ -9,7 +9,7 @@ var conName = new Array("步骤:\n1","期望:\n1","实际:\n1","补充说明:\n1
 var conLen = conName.length;
 conName = conName.reverse();
 //产品和版本
-var curProduct =new Array ("星合企业知识产权管理平台","2.0.0.0")
+var curProduct =new Array ("","")
 
 
 
