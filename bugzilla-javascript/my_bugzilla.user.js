@@ -62,7 +62,7 @@ function IsBugEmpty(){
       realComment = realComment.replace(conName[i],'');
     }
     //去除序号分隔符
-    realComment = realComment.replace(new RegExp(seqSep,g), '');
+    realComment = realComment.replace(new RegExp(seqSep,'g'), '');
     //去除数字
     realComment = realComment.replace(/\d/g, '');
     //去除换行
