@@ -1,7 +1,7 @@
 ﻿//variables
 //配置项们
 //步骤序列号与内容的分隔符
-var seqSep = ">";
+var seqSep = "> ";
 //各部分内容分隔
 var conSep = "\n\n";
 //各部分名称
