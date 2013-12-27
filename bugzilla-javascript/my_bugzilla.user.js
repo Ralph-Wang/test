@@ -272,7 +272,8 @@ function deleteSerialNum(text, seperator){
     textRe = textRe.replace(strReverse(lasttmp) + "\n", "");
     text = strReverse(textRe);
   }
-  return text.trim();
+  //return text.trim();
+  return text;
 }
 //}}}
 
