@@ -12,11 +12,12 @@ def readXml(fname):
         CEdict[CValue] = EValue
     return CEdict
 
+
 def test():
     import os
     res = readXml("test.xml")
     for i in res:
-        print(i,res[i])
+        print(i, res[i])
     print(len(res))
     os.system("pause")
 

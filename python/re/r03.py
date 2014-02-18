@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding=utf-8
+# coding=utf-8
 
 import re
 
@@ -8,7 +8,8 @@ s = 'i say, hello world'
 
 print p.sub(r'\2 \1', s)
 
+
 def func(m):
-  return m.group(1).title() + ' ' + m.group(2).title()
+    return m.group(1).title() + ' ' + m.group(2).title()
 
 print p.sub(func, s)

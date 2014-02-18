@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding=utf-8
+# coding=utf-8
 
 import re
 
@@ -11,17 +11,17 @@ match2 = pattern.match('hellooo world')
 match3 = pattern.match('helolo world')
 
 if match1:
-  print match1.group()
+    print match1.group()
 else:
-  print 'match1 failed'
+    print 'match1 failed'
 
 if match2:
-  print match2.group()
+    print match2.group()
 else:
-  print 'match2 failed'
+    print 'match2 failed'
 
 
 if match3:
-  print match3.group()
+    print match3.group()
 else:
-  print 'match3 failed'
+    print 'match3 failed'

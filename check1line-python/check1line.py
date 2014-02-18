@@ -7,13 +7,15 @@ def check1Line(fname):
     else:
         return False
 
+
 def fileFilter(flist):
     newflist = []
-    atupple = ('.aspx','.js','.css')
+    atupple = ('.aspx', '.js', '.css')
     for i in flist:
         if i.endswith(atupple):
             newflist.append(i)
     return newflist
+
 
 def main():
     import os
@@ -26,10 +28,10 @@ def main():
         for i in clist:
             res = check1Line(i)
             if res:
-                #print(d[0],'\\',i,'只有一行')
+                # print(d[0],'\\',i,'只有一行')
                 pass
             else:
-                print(d[0],'\\',i,'没有被压缩到1行,长标题引人注目的说')
+                print(d[0], '\\', i, '没有被压缩到1行,长标题引人注目的说')
 
 
 if __name__ == '__main__':
