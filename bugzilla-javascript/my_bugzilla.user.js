@@ -285,7 +285,7 @@ function TopSearches(){
   headDiv.removeChild(headLinks);
   bottomLinks = document.getElementById('useful-links');
   bottomLinksCopy = bottomLinks.cloneNode(true);
-  bottomLinksCopy.className = 'links';
+  bottomLinksCopy.className = '';
   headDiv.appendChild(bottomLinksCopy);
   headDiv.id = 'footer';
 }
