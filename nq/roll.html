@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<title>ROLL</title>
+</head>
+<body>
+<div class="container" style="margin:50px">
+    <div class="jumbotron" style="margin:20px">
+        <form role="form" action="" method="get">
+            <div class="form-group">
+                <input class="form-control" id="start" name="start" type="text" placeholder="第一条用例所在行"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="end" name="end" type="text" placeholder="最后用例所在行"/>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="tester1">
+                        <input id="tester1" name="tester1" type="checkbox" value="1" />tester1</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="tester2">
+                        <input id="tester2" name="tester2" type="checkbox" value="1" />tester2</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="tester3">
+                        <input id="tester3" name="tester3" type="checkbox" value="1" />tester3</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="tester4">
+                        <input id="tester4" name="tester4" type="checkbox" value="1" />tester4</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="tester5">
+                        <input id="tester5" name="tester5" type="checkbox" value="1" />tester5</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <input class="btn btn-default" id="ok" type="submit" value="ROLL" />
+                </div>
+            </div>
+        </form>
+        <script type="text/javascript">
+
+allocate();
+
+function allocate() {
+    document.write('<h4>----------roll result----------</h4>');
+    var nl = new Array();
+    var query = parseQueryString();
+    var cases = new Object();
+    for (var key in query) {
+        //console.log(key);
+        if (key == "start" || key == "end") {
+            document.getElementById(key).value = query[key];
+            cases[key] = query[key];
+            continue;
+        }
+        nl.push(key);
+        document.getElementById(key).checked = true;
+    }
+    var rs = roll(nl.length);
+    var caseGroup = splitCases(cases, nl.length);
+    document.write('<ul class="list-group">');
+    for (var idx in rs) {
+        document.write('<li class="list-group-item">');
+        document.write('第' + (parseInt(idx)+1) + '组('+ caseGroup[idx] +'): ');
+        document.write(nl[rs[idx]]);
+        document.write('</li>');
+    }
+    document.write('</ul>');
+}
+
+// split cases 
+function splitCases(cases, copyCount) {
+    var counts = cases.end - cases.start + 1;
+    var floor = Math.floor(counts / copyCount);
+    var caseSplited = new Array();
+    for (var idx=0;idx<copyCount;idx++) {
+        caseSplited.push(floor);
+    }
+
+    var left = counts - sum(caseSplited);
+    //console.log(left);
+    for (idx=0;idx<left;idx++) {
+        caseSplited[randint(copyCount)] += 1;
+    }
+
+    //render
+    var caseGroup = new Array();
+    for (idx=0;idx<copyCount;idx++) {
+        if (idx == 0) {
+            start = parseInt(cases.start);
+        } else {
+            start = end + 1;
+        }
+        end = start + caseSplited[idx] - 1;
+        caseGroup.push(start + "-" + end);
+    }
+    return caseGroup;
+}
+// sum a list
+function sum(list) {
+    res = 0;
+    for (var idx in list) {
+        res += list[idx];
+    }
+    return res;
+}
+
+// basic random function
+function randint(start, end) {
+    if (typeof end === "undefined") {
+        end = start;
+        start = 0;
+    }
+    return Math.floor(Math.random() * (end - start) + start);
+}
+
+// basic roll
+function roll(num) {
+    var res = new Array();
+    for (var i=0;i<num;i++) {
+        var rand = randint(num);
+        while (res.indexOf(rand) > -1) {
+            rand = randint(num);
+        }
+        res[i] = rand;
+    }
+    return res;
+}
+
+// parse url query string
+function parseQueryString() {
+    var query = window.location.search.substring(1);
+    querys = query.split('&');
+    var res = {}
+    for (idx in querys) {
+        var key_value = querys[idx].split('=');
+        res[key_value[0]] = key_value[1]
+    }
+    return res
+}
+        </script>
+    </div>
+</div>
+</body>
+</html>
